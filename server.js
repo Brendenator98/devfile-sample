@@ -11,10 +11,12 @@ let dbName = process.env.POSTGRESQL_NAME;
 let serviceHost = process.env.MY_DATABASE_SERVICE_HOST
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
 
+
+
 // Connect with a connection pool.
 
 async function poolDemo() {
-  const pool = new Pool(connectionString);
+  const pool = new Pool({connectionString});
   const now = await pool.query("SELECT NOW()");
   await pool.end();
 
