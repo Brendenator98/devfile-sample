@@ -9,11 +9,12 @@ let user= process.env.POSTGRESQL_USER
 let password= process.env.POSTGRESQL_PASSWORD
 let dbName = process.env.POSTGRESQL_NAME;
 let serviceHost = process.env.MY_DATABASE_SERVICE_HOST
+const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
 
 // Connect with a connection pool.
 
 async function poolDemo() {
-  const pool = new Pool(credentials);
+  const pool = new Pool(connectionString);
   const now = await pool.query("SELECT NOW()");
   await pool.end();
 
@@ -23,7 +24,7 @@ async function poolDemo() {
 // Connect with a client.
 
 async function clientDemo() {
-  const client = new Client(`postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`);
+  const client = new Client(connectionString);
   await client.connect();
   const now = await client.query("SELECT NOW()");
   await client.end();
