@@ -12,7 +12,12 @@ let serviceHost = process.env.MY_DATABASE_SERVICE_HOST
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
 
 
-
+const connectionObject = {
+  user: process.env.POSTGRESQL_USER,
+  password: process.env.POSTGRESQL_PASSWORD,
+  serviceHost: process.env.MY_DATABASE_SERVICE_HOST,
+  host: process.env.POSTGRESQL_NAME
+}
 // Connect with a connection pool.
 
 async function poolDemo() {
