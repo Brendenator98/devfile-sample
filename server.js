@@ -5,12 +5,9 @@ const http = require('http');
 
 const { Pool, Client } = require("pg");
 
-const credentials = {
-  user: process.env.POSTGRESQL_USER,
-  host: "localhost",
-  password: process.env.POSTGRESQL_PASSWORD,
-  port: 5432,
-};
+let user= process.env.POSTGRESQL_USER
+let password= process.env.POSTGRESQL_PASSWORD
+let dbName = process.env.POSTGRESQL_NAME;
 
 // Connect with a connection pool.
 
@@ -25,7 +22,7 @@ async function poolDemo() {
 // Connect with a client.
 
 async function clientDemo() {
-  const client = new Client(credentials);
+  const client = new Client(`postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`);
   await client.connect();
   const now = await client.query("SELECT NOW()");
   await client.end();
