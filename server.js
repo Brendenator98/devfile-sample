@@ -12,22 +12,6 @@ let serviceHost = '172.30.218.108';
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
 
 
-const connectionObject = {
-  user: process.env.POSTGRESQL_USER,
-  password: process.env.POSTGRESQL_PASSWORD,
-  serviceHost: process.env.MY_DATABASE_SERVICE_HOST,
-  host: process.env.POSTGRESQL_NAME
-}
-// Connect with a connection pool.
-
-async function poolDemo() {
-  const pool = new Pool({connectionString});
-  const now = await pool.query("SELECT NOW()");
-  await pool.end();
-
-  return now;
-}
-
 // Connect with a client.
 
 async function clientDemo() {
@@ -42,8 +26,6 @@ async function clientDemo() {
 // Use a self-calling function so we can use async / await.
 
 (async () => {
-  const poolResult = await poolDemo();
-  console.log("Time with pool: " + poolResult.rows[0]["now"]);
 
   const clientResult = await clientDemo();
   console.log("Time with client: " + clientResult.rows[0]["now"]);
