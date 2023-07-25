@@ -6,9 +6,9 @@ const http = require('http');
 const { Pool, Client } = require("pg");
 
 const credentials = {
-  user: process.env.DB_USERNAME,
+  user: process.env.POSTGRESQL_USER,
   host: "localhost",
-  password: process.env.DB_PASSWORD,
+  password: process.env.POSTGRESQL_PASSWORD,
   port: 5432,
 };
 
