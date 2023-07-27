@@ -1,7 +1,7 @@
 const Prometheus = require('prom-client')
 const express = require('express');
 const http = require('http');
-
+const { Client } = require('pg')
 
 
 const user = process.env['database-user'];
@@ -9,6 +9,7 @@ const password = process.env['database-password']
 const dbName = process.env['database-name'];
 const serviceHost = '172.30.218.108';
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
+console.log(connectionString)
 
 
 // Connect with a client.
