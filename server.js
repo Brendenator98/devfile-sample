@@ -19,8 +19,6 @@ async function clientDemo() {
   const res = await client.query('SELECT $1::text as message', ['Hello world!'])
   console.log(res.rows[0].message) 
   await client.end();
-
-  return now;
 }
 
 // Use a self-calling function so we can use async / await.
