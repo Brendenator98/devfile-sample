@@ -4,10 +4,11 @@ const http = require('http');
 
 
 const { Pool, Client } = require("pg");
+const { user } = require('pg/lib/defaults');
 
-let user= process.env.POSTGRESQL_USER
-let password= process.env.POSTGRESQL_PASSWORD
-let dbName = process.env.POSTGRESQL_NAME;
+let user= process.env.database-user;
+let password= process.env.database-password
+let dbName = process.env.database-name;
 let serviceHost = '172.30.218.108';
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
 
