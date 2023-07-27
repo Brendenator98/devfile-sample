@@ -3,8 +3,6 @@ const express = require('express');
 const http = require('http');
 
 
-const { Pool, Client } = require("pg");
-const { user } = require('pg/lib/defaults');
 
 let user= process.env.database-user;
 let password= process.env.database-password
