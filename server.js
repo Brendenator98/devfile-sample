@@ -4,8 +4,8 @@ const http = require('http');
 
 
 
-let user= process.env.database-user;
-let password= process.env.database-password
+let user = process.env.database-user;
+let password = process.env.database-password
 let dbName = process.env.database-name;
 let serviceHost = '172.30.218.108';
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
