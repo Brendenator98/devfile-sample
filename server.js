@@ -9,7 +9,6 @@ const password = process.env['database-password']
 const dbName = process.env['database-name'];
 const serviceHost = '172.30.218.108';
 const connectionString = `postgresql://${user}:${password}@${serviceHost}:5432/${dbName}`
-console.log(connectionString)
 
 
 // Connect with a client.
@@ -17,7 +16,8 @@ console.log(connectionString)
 async function clientDemo() {
   const client = new Client(connectionString);
   await client.connect();
-  const now = await client.query("SELECT NOW()");
+  const res = await client.query('SELECT $1::text as message', ['Hello world!'])
+  console.log(res.rows[0].message) 
   await client.end();
 
   return now;
@@ -25,11 +25,7 @@ async function clientDemo() {
 
 // Use a self-calling function so we can use async / await.
 
-(async () => {
-
-  const clientResult = await clientDemo();
-  console.log("Time with client: " + clientResult.rows[0]["now"]);
-})();
+clientDemo()
 
 
 Prometheus.collectDefaultMetrics();
